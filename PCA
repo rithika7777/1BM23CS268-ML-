@@ -1,0 +1,24 @@
+# Import libraries
+from sklearn.datasets import load_iris
+from sklearn.decomposition import PCA
+import pandas as pd
+
+# Load dataset
+data = load_iris()
+X = data.data
+
+# Apply PCA (reduce to 2 features)
+pca = PCA(n_components=2)
+X_reduced = pca.fit_transform(X)
+
+# Convert to DataFrame
+df = pd.DataFrame(X_reduced, columns=["PC1", "PC2"])
+
+# Output
+print("=== PCA Result ===\n")
+
+print("First 10 Reduced Data Points:")
+print(df.head(10))
+
+print("\nExplained Variance Ratio:")
+print(pca.explained_variance_ratio_)
