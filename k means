@@ -1,0 +1,29 @@
+# Import libraries
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+
+# Load dataset
+data = load_iris()
+X = data.data
+
+# Take first 2 features
+df = pd.DataFrame(X[:, :2], columns=["Feature1", "Feature2"])
+
+# Shuffle data (IMPORTANT to mix clusters)
+df = df.sample(frac=1, random_state=42).reset_index(drop=True)
+
+# Apply K-Means
+kmeans = KMeans(n_clusters=3, n_init=10, random_state=42)
+df["Cluster"] = kmeans.fit_predict(df)
+
+# Output
+print("=== K-Means Clustering (Mixed Output) ===\n")
+
+print("First 15 Data Points:")
+print(df.head(15))
+
+print("\nCentroids:")
+centroids = kmeans.cluster_centers_
+centroid_df = pd.DataFrame(centroids, columns=["Feature1", "Feature2"])
+print(centroid_df)
