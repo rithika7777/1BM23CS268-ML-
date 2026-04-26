@@ -34,6 +34,14 @@ y_pred = model.predict(X)
 print("=== Decision Tree (Play Tennis) ===")
 print("Predictions:", y_pred)
 print("Accuracy:", accuracy_score(y, y_pred))
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+print("=== Classification Metrics ===")
+
+print("Accuracy:", accuracy_score(y, y_pred))
+print("Precision:", precision_score(y, y_pred))
+print("Recall:", recall_score(y, y_pred))
+print("F1 Score:", f1_score(y, y_pred))
 === Decision Tree (Play Tennis) ===
 Predictions: [0 0 1 1 1 0 1 0 1 1 1 1 1 0]
 Accuracy: 1.0
